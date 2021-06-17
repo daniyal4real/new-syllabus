@@ -169,7 +169,7 @@ CREATE TABLE "postrequisites" (
 ALTER TABLE "users" ADD CONSTRAINT "users_fk0" FOREIGN KEY ("role_id") REFERENCES "roles"("id");
 ALTER TABLE "personal_info" ADD CONSTRAINT "personal_info_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "personal_info" ADD CONSTRAINT "personal_info_fk1" FOREIGN KEY ("position_id") REFERENCES "positions"("id");
-ALTER TABLE "discipline_info" ADD CONSTRAINT "discipline_info_fk0" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"("id");
+ALTER TABLE "discipline_info" ADD CONSTRAINT "discipline_info_fk0" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"(id);
 ALTER TABLE "instructors" ADD CONSTRAINT "instructors_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
 ALTER TABLE "instructors" ADD CONSTRAINT "instructors_fk1" FOREIGN KEY ("discipline_info_id") REFERENCES "discipline_info"("id");
 ALTER TABLE "discipline_info_program" ADD CONSTRAINT "discipline_info_program_fk0" FOREIGN KEY ("instructor_id") REFERENCES "instructors"("id");
@@ -178,10 +178,10 @@ ALTER TABLE "discipline_info_program" ADD CONSTRAINT "discipline_info_program_fk
 ALTER TABLE "program_info" ADD CONSTRAINT "program_info_fk0" FOREIGN KEY ("program_id") REFERENCES "discipline_info_program"("id");
 ALTER TABLE "program_details" ADD CONSTRAINT "program_details_fk0" FOREIGN KEY ("program_info_id") REFERENCES "program_info"("id");
 ALTER TABLE "discipline_evaluation" ADD CONSTRAINT "discipline_evaluation_fk0" FOREIGN KEY ("evaluation_system_id") REFERENCES "evaluation_systems"("id");
-ALTER TABLE "discipline_evaluation" ADD CONSTRAINT "discipline_evaluation_fk1" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"("id");
-ALTER TABLE "prerequisites" ADD CONSTRAINT "prerequisites_fk0" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"("id");
+ALTER TABLE "discipline_evaluation" ADD CONSTRAINT "discipline_evaluation_fk1" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"(id);
+ALTER TABLE "prerequisites" ADD CONSTRAINT "prerequisites_fk0" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"(id);
 ALTER TABLE "prerequisites" ADD CONSTRAINT "prerequisites_fk1" FOREIGN KEY ("discipline_info_id") REFERENCES "discipline_info"("id");
-ALTER TABLE "postrequisites" ADD CONSTRAINT "postrequisites_fk0" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"("id");
+ALTER TABLE "postrequisites" ADD CONSTRAINT "postrequisites_fk0" FOREIGN KEY ("discipline_id") REFERENCES "disciplines"(id);
 ALTER TABLE "postrequisites" ADD CONSTRAINT "postrequisites_fk1" FOREIGN KEY ("discipline_info_id") REFERENCES "discipline_info"("id");
 
 

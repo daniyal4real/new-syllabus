@@ -6,7 +6,7 @@ import kz.syllabus.entity.DisciplineInfoProgram;
 public class DisciplineInfoProgramFacade {
     public static SyllabusDtoResponse objectToSyllabusDto(DisciplineInfoProgram disciplineInfoProgram, SyllabusDtoResponse response) {
         response.setEvaluationId(disciplineInfoProgram.getEvaluationId());
-        response.setCompetencies(disciplineInfoProgram.getCompetencies());
+//        response.setCompetencies(disciplineInfoProgram.getCompetencies());
         return response;
     }
 }

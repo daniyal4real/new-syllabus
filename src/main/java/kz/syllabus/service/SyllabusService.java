@@ -3,6 +3,7 @@ package kz.syllabus.service;
 import kz.syllabus.dto.requestDto.ProgramDetailDtoRequest;
 import kz.syllabus.dto.requestDto.ProgramInfoDtoRequest;
 import kz.syllabus.dto.requestDto.SyllabusDTORequest;
+import kz.syllabus.dto.requestDto.SyllabusDto;
 import kz.syllabus.dto.responseDto.DisciplineInfoDtoResponse;
 import kz.syllabus.dto.responseDto.ProgramDetailDtoResponse;
 import kz.syllabus.dto.responseDto.ProgramInfoDtoResponse;
@@ -35,6 +36,7 @@ public class SyllabusService {
     private final InstructorRepository instructorRepository;
     private final PrerequisiteRepository prerequisiteRepository;
     private final PostrequisiteRepository postrequisiteRepository;
+
 
     public ResponseEntity<?> create(SyllabusDTORequest syllabusDTORequest) {
         SyllabusDtoResponse response = new SyllabusDtoResponse();
@@ -105,13 +107,13 @@ public class SyllabusService {
         newDisciplineInfoProgram.setInstructorId(instructorId);
         newDisciplineInfoProgram.setDisciplineInfoId(disciplineInfoId);
         newDisciplineInfoProgram.setEvaluationId(syllabusDTORequest.getEvaluationId());
-        newDisciplineInfoProgram.setCompetencies(syllabusDTORequest.getCompetencies());
+//        newDisciplineInfoProgram.setCompetencies(syllabusDTORequest.getCompetencies());
         DisciplineInfoProgram disciplineInfoProgram = disciplineInfoProgramRepository.save(newDisciplineInfoProgram);
         Integer disciplineInfoProgramId = disciplineInfoProgram.getId();
         log.info(String.valueOf(disciplineInfoProgramId));
 
         response.setEvaluationId(disciplineInfoProgram.getEvaluationId());
-        response.setCompetencies(disciplineInfoProgram.getCompetencies());
+        /*response.setCompetencies(disciplineInfoProgram.getCompetencies());*/
 
         HashMap<Integer, Integer> idMap = new HashMap<>();
         List<ProgramInfoDtoResponse> list1 = new ArrayList<>();
@@ -226,5 +228,9 @@ public class SyllabusService {
 
     public ResponseEntity<?> getUserData(Long userId) {
         return ResponseEntity.ok(userService.findById(userId));
+    }
+
+    public ResponseEntity<?> getSyllabusById(Integer id) {
+        return ResponseEntity.ok(disciplineRepository.getSyllabusById(id));
     }
 }

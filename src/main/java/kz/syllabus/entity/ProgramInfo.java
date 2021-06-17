@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +22,7 @@ public class ProgramInfo {
     private String practiceTheme;
     private String iswTheme;
     private Integer week;
+    @OneToMany(targetEntity = ProgramDetail.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "programInfoId", referencedColumnName = "id")
+    private List<ProgramDetail> programDetail;
 }

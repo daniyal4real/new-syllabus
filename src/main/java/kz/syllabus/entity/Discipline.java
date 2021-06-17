@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,5 +22,14 @@ public class Discipline {
     private Integer credits;
     private Integer lectureHoursPerWeek;
     private Integer practiceHoursPerWeek;
-    private Integer IswHoursPerWeek;
+    private Integer iswHoursPerWeek;
+    @OneToMany(targetEntity = DisciplineInfo.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
+    private List<DisciplineInfo> disciplineInfo;
+    @OneToMany(targetEntity = Prerequisite.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
+    private List<Prerequisite> prerequisites;
+    @OneToMany(targetEntity = Postrequisite.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "disciplineId", referencedColumnName = "id")
+    private List<Postrequisite> postrequisites;
 }
